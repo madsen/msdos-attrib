@@ -1,4 +1,4 @@
-# $Id: test.pl,v 0.3 1996/10/17 16:58:37 Madsen Exp $
+# $Id: test.pl,v 1.0 1997/02/26 03:06:20 Madsen Rel $
 #
 # Before `make install' is performed this script should be runnable with
 # `make test'. After `make install' it should work as `perl test.pl'
@@ -95,4 +95,5 @@ sub runTests
 
 # Local Variables:
 # compile-command: "make test"
+# tmtrack-file-task: "OS2::Attrib test.pl"
 # End:

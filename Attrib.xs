@@ -1,5 +1,5 @@
 /*********************************************************************
- * $Id: Attrib.xs,v 0.4 1996/10/17 16:57:00 Madsen Exp $
+ * $Id: Attrib.xs,v 1.0 1997/02/26 03:01:51 Madsen Rel $
  *
  * Copyright 1996 Christopher J. Madsen
  *
@@ -170,3 +170,7 @@ _set_attribs(path, clear, set)
 	char *		path
 	unsigned long	clear
 	unsigned long	set
+
+# Local Variables:
+# tmtrack-file-task: "OS2::Attrib.xs"
+# End:

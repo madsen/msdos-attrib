@@ -1,9 +1,9 @@
 #---------------------------------------------------------------------
-package OS2::Attrib;
+package MSDOS::Attrib;
 #
 # Copyright 1996 Christopher J. Madsen
 #
-# $Id: Attrib.pm,v 1.0 1997/02/26 02:52:14 Madsen Rel $
+# $Id: Attrib.pm,v 2.0 1997/09/05 22:31:16 Madsen Rel $
 # Author: Christopher J. Madsen <ac608@yfn.ysu.edu>
 # Created: 13 Mar 1996
 #
@@ -15,7 +15,7 @@ package OS2::Attrib;
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See either the
 # GNU General Public License or the Artistic License for more details.
 #
-# Get or set OS/2 file attributes
+# Get or set MS-DOS file attributes under OS/2 or Win32
 #---------------------------------------------------------------------
 
 $VERSION = '1.00';
@@ -44,13 +44,13 @@ sub AUTOLOAD {
     ($constname = $AUTOLOAD) =~ s/.*:://;
     if ($constname =~ /^FILE_/) {
         my $val = constant($constname);
-        croak("OS2::Attrib does not define $constname") if $! != 0;
+        croak("MSDOS::Attrib does not define $constname") if $! != 0;
         eval "sub $AUTOLOAD { $val }";
         goto &$AUTOLOAD;
     }
 } # end AUTOLOAD
 
-bootstrap OS2::Attrib $VERSION;
+bootstrap MSDOS::Attrib $VERSION;
 
 sub set_attribs ($@)
 {
@@ -86,17 +86,17 @@ __END__
 
 =head1 NAME
 
-OS2::Attrib - Get or set OS/2 file attributes
+MSDOS::Attrib - Get or set MS-DOS file attributes
 
 =head1 SYNOPSIS
 
-  use OS2::Attrib qw(get_attribs set_attribs);
+  use MSDOS::Attrib qw(get_attribs set_attribs);
   $attribs = get_attribs($path);
   set_attribs($attribs, $path1, $path2, ...);
 
 =head1 DESCRIPTION
 
-OS2::Attrib provides access to OS/2 file attributes.  While the
+MSDOS::Attrib provides access to MS-DOS file attributes.  While the
 read-only attribute can be handled by C<chmod> and C<stat>, the
 hidden, system, and archive attributes cannot.
 
@@ -108,7 +108,7 @@ Returns the attributes of C<$path>, or the empty string if C<$path>
 does not exist.  Attributes are returned as a five-character string in
 this format: "RHSAD".  Each letter is replaced by an underscore (C<_>)
 if the file does not have the corresponding attribute.  (This is the
-same format as a 4OS2 directory listing.)  The attributes are:
+same format as a 4DOS directory listing.)  The attributes are:
 
   R  The file is read-only (not writable)
   H  The file is hidden (does not appear in directory listings)
@@ -147,10 +147,13 @@ Christopher J. Madsen E<lt>F<ac608@yfn.ysu.edu>E<gt>
 
 =head1 SEE ALSO
 
-The L<OS2::ExtAttr> module provides access to extended attributes.
+The L<OS2::ExtAttr> module provides access to extended attributes under OS/2.
+
+The L<Win32::FileSecurity> module provides access to Discretionary
+Access Control Lists under Windows NT.
 
 =cut
 
 # Local Variables:
-# tmtrack-file-task: "OS2::Attrib.pm"
+# tmtrack-file-task: "MSDOS::Attrib.pm"
 # End:

@@ -1,4 +1,4 @@
-# $Id: test.pl,v 1.0 1997/02/26 03:06:20 Madsen Rel $
+# $Id: test.pl,v 2.0 1997/09/05 22:33:37 Madsen Rel $
 #
 # Before `make install' is performed this script should be runnable with
 # `make test'. After `make install' it should work as `perl test.pl'
@@ -27,7 +27,7 @@ BEGIN {
 
 BEGIN { $| = 1; print "1..$last_test_to_print\n"; }
 END {print "not ok 1\n" unless $loaded;}
-use OS2::Attrib qw(get_attribs set_attribs);
+use MSDOS::Attrib qw(get_attribs set_attribs);
 $loaded = 1;
 print "ok 1\n";
 
@@ -94,6 +94,6 @@ sub runTests
 } # end runTests
 
 # Local Variables:
-# compile-command: "make test"
-# tmtrack-file-task: "OS2::Attrib test.pl"
+# compile-command: "nmake test"
+# tmtrack-file-task: "MSDOS::Attrib test.pl"
 # End:

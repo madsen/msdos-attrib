@@ -1,5 +1,5 @@
 /*********************************************************************
- * $Id: Attrib.xs,v 0.2 1996/10/17 04:25:24 Madsen Exp $
+ * $Id: Attrib.xs,v 0.3 1996/10/17 15:45:26 Madsen Exp $
  *
  * Copyright 1996 Christopher J. Madsen
  *
@@ -38,10 +38,7 @@ constant(const char *name)
 {
   errno = 0;
 
-  if (strncmp(name,"FILE_",5)) {
-    errno = ENOENT;
-    return 0;
-  }
+  if (strncmp(name,"FILE_",5)) goto not_here;
   name += 5;                    /* Skip over FILE_ */
 
   if (strEQ(name, "READONLY"))
@@ -57,6 +54,7 @@ constant(const char *name)
   if (strEQ(name, "CHANGEABLE")) /* All changeable attributes */
     return FILE_READONLY|FILE_HIDDEN|FILE_SYSTEM|FILE_ARCHIVED;
 
+ not_here:
   errno = EINVAL;
   return 0;
 } /* end constant */

@@ -1,5 +1,5 @@
 /*********************************************************************
- * $Id: Attrib.xs,v 0.1 1996/10/17 03:50:07 Madsen Exp $
+ * $Id: Attrib.xs,v 0.2 1996/10/17 04:25:24 Madsen Exp $
  *
  * Copyright 1996 Christopher J. Madsen
  *
@@ -65,21 +65,22 @@ constant(const char *name)
  * Get the attributes of a file or directory:
  *
  * Input:
- *   path:  The pathname to get attributes for
+ *   attribs:  A six byte buffer to store the attributes in
+ *   path:     The pathname to get attributes for
  *
- * Returns:
- *   A five character string "RHSAD"
- *     Each letter is replaced by an underscore ('_') if the file does
- *     not have the corresponding attribute.
- *   Returns the empty string if an error occurs.
+ * Output:
+ *   attribs:
+ *     A five character string "RHSAD"
+ *       Each letter is replaced by an underscore ('_') if the file
+ *       does not have the corresponding attribute.
+ *     The empty string if an error occured
  *********************************************************************/
 
-static char*
-getAttribs(const char* path)
+static void
+getAttribs(char* attribs, const char* path)
 {
   FILESTATUS3  buf;             /* File info buffer */
   APIRET       rc;              /* Return code */
-  static char  attribs[6] = "RHSAD";
 
   rc = DosQueryPathInfo(path, 1 /* get file info */, &buf, sizeof(buf));
 
@@ -88,7 +89,8 @@ getAttribs(const char* path)
       errno = ENOENT;
     else
       errno = EINVAL;
-    return "";
+    attribs[0] = '\0';
+    return;
   }
 
   attribs[0] = ((buf.attrFile & FILE_READONLY)  ? 'R' : '_');
@@ -96,8 +98,7 @@ getAttribs(const char* path)
   attribs[2] = ((buf.attrFile & FILE_SYSTEM)    ? 'S' : '_');
   attribs[3] = ((buf.attrFile & FILE_ARCHIVED)  ? 'A' : '_');
   attribs[4] = ((buf.attrFile & FILE_DIRECTORY) ? 'D' : '_');
-
-  return attribs;
+  attribs[5] = '\0';
 } /* end getAttribs */
 
 /*********************************************************************
@@ -159,6 +160,12 @@ constant(name)
 char *
 getAttribs(path)
 	char *	path
+  CODE:
+    char attribs[6];
+    getAttribs(attribs, path);
+    RETVAL = attribs;
+  OUTPUT:
+    RETVAL
 
 bool
 _setAttribs(path, clear, set)

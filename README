@@ -1,0 +1,25 @@
+OS2::Attrib	Version 0.001
+Copyright 1996 Christopher J. Madsen
+
+DESCRIPTION
+	OS2::Attrib allows you to get or set file attributes under
+	OS/2.  These are the standard file attributes (read-only,
+	hidden, system, archive, and directory).  If you want to
+	access extended attributes, use the OS2::ExtAttr module.
+
+INSTALLATION
+	Unpack the archive, run Makefile.PL, type 'make', 'make test',
+	and then 'make install'.
+
+LICENSE
+	This program is free software; you can redistribute it and/or
+	modify it under the same terms as Perl itself.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See either
+	the GNU General Public License or the Artistic License for more
+	details.
+
+AUTHOR
+	Christopher J. Madsen <ac608@yfn.ysu.edu>

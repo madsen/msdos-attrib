@@ -10,7 +10,9 @@ DESCRIPTION
 	try the Win32::FileSecurity module.
 
 	MSDOS::Attrib was previously known as OS2::Attrib.  I renamed
-	it because it now works on Win32 systems as well as OS/2.
+	it because it now works on Win32 systems as well as OS/2.  To
+	upgrade, simply replace "OS2::Attrib" with "MSDOS::Attrib" in
+	any programs that use it.
 
 INSTALLATION
 	Unpack the archive, run Makefile.PL, type 'make', 'make test',

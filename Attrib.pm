@@ -3,8 +3,8 @@ package MSDOS::Attrib;
 #
 # Copyright 1996 Christopher J. Madsen
 #
-# $Id: Attrib.pm,v 2.0 1997/09/05 22:31:16 Madsen Rel $
-# Author: Christopher J. Madsen <ac608@yfn.ysu.edu>
+# $Id: Attrib.pm,v 2.1 1998/10/25 22:56:28 Madsen Exp $
+# Author: Christopher J. Madsen <chris_madsen@geocities.com>
 # Created: 13 Mar 1996
 #
 # This program is free software; you can redistribute it and/or modify
@@ -18,7 +18,7 @@ package MSDOS::Attrib;
 # Get or set MS-DOS file attributes under OS/2 or Win32
 #---------------------------------------------------------------------
 
-$VERSION = '1.00';
+$VERSION = '1.01';
 
 BEGIN { require 5.002 }
 
@@ -143,7 +143,7 @@ details.
 
 =head1 AUTHOR
 
-Christopher J. Madsen E<lt>F<ac608@yfn.ysu.edu>E<gt>
+Christopher J. Madsen E<lt>F<chris_madsen@geocities.com>E<gt>
 
 =head1 SEE ALSO
 

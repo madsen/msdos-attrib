@@ -3,7 +3,7 @@ package OS2::Attrib;
 #
 # Copyright 1996 Christopher J. Madsen
 #
-# $Id: Attrib.pm,v 0.1 1996/10/17 15:21:25 Madsen Exp $
+# $Id: Attrib.pm,v 0.2 1996/10/17 16:56:21 Madsen Exp $
 # Author: Christopher J. Madsen <ac608@yfn.ysu.edu>
 # Created: 13 Mar 1996
 #
@@ -18,7 +18,7 @@ package OS2::Attrib;
 # Get or set OS/2 file attributes
 #---------------------------------------------------------------------
 
-$VERSION = '0.001';
+$VERSION = '0.002';
 
 BEGIN { require 5.002 }
 
@@ -32,7 +32,7 @@ require DynaLoader;
 @ISA = qw(Exporter DynaLoader);
 @EXPORT = ();
 @EXPORT_OK = qw(
-    getAttribs setAttribs
+    get_attribs set_attribs
     FILE_READONLY FILE_HIDDEN FILE_SYSTEM FILE_ARCHIVED FILE_DIRECTORY
     FILE_CHANGEABLE
 );
@@ -52,7 +52,7 @@ sub AUTOLOAD {
 
 bootstrap OS2::Attrib $VERSION;
 
-sub setAttribs ($@)
+sub set_attribs ($@)
 {
     my $attribs = shift;
     my $set = 0;
@@ -77,9 +77,9 @@ sub setAttribs ($@)
     carp("No change specified") if $clear == 0 and $set == 0;
 
     my $changed = 0;
-    foreach (@_) { _setAttribs($_,$clear,$set) or last; ++$changed }
+    foreach (@_) { _set_attribs($_,$clear,$set) or last; ++$changed }
     $changed;
-} # end setAttribs
+} # end set_attribs
 
 1;
 __END__
@@ -90,9 +90,9 @@ OS2::Attrib - Get or set OS/2 file attributes
 
 =head1 SYNOPSIS
 
-  use OS2::Attrib qw(getAttribs setAttribs);
-  $attribs = getAttribs($path);
-  setAttribs($attribs, $path1, $path2, ...);
+  use OS2::Attrib qw(get_attribs set_attribs);
+  $attribs = get_attribs($path);
+  set_attribs($attribs, $path1, $path2, ...);
 
 =head1 DESCRIPTION
 
@@ -102,7 +102,7 @@ hidden, system, and archive attributes cannot.
 
 =over 4
 
-=item $attribs = getAttribs($path)
+=item $attribs = get_attribs($path)
 
 Returns the attributes of C<$path>, or the empty string if C<$path>
 does not exist.  Attributes are returned as a five-character string in
@@ -116,7 +116,7 @@ same format as a 4OS2 directory listing.)  The attributes are:
   A  The file needs to be archived (it has changed since last backup)
   D  The file is a directory
 
-=item $count = setAttribs($attribs, $path1, [$path2, ...])
+=item $count = set_attribs($attribs, $path1, [$path2, ...])
 
 Sets the attributes of C<$path1>, C<$path2>, etc.  You can either
 specify the complete set of attributes, or add and subtract attributes
@@ -124,7 +124,7 @@ by using C<+> and C<->.  The case and order of the attributes is not
 important.  For example, '-s+ra' will remove the system attribute and
 add the read-only and archive attributes.  You should not use
 whitespace between attributes, although underscores are OK.  See
-C<getAttribs> for an explanation of the attribute values.  You cannot
+C<get_attribs> for an explanation of the attribute values.  You cannot
 change the directory attribute; if you specify it, it is ignored.
 Returns the number of files successfully changed.
 

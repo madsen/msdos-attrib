@@ -1,4 +1,4 @@
-# $Id: test.pl,v 0.2 1996/10/17 04:24:05 Madsen Exp $
+# $Id: test.pl,v 0.3 1996/10/17 16:58:37 Madsen Exp $
 #
 # Before `make install' is performed this script should be runnable with
 # `make test'. After `make install' it should work as `perl test.pl'
@@ -27,7 +27,7 @@ BEGIN {
 
 BEGIN { $| = 1; print "1..$last_test_to_print\n"; }
 END {print "not ok 1\n" unless $loaded;}
-use OS2::Attrib qw(getAttribs setAttribs);
+use OS2::Attrib qw(get_attribs set_attribs);
 $loaded = 1;
 print "ok 1\n";
 
@@ -53,7 +53,7 @@ runTests($testfile, 'D');       # Run tests on directory
 rmdir $testfile;
 
 # Make sure it fails for nonexistent path:
-if (getAttribs($testfile) || not $!) {
+if (get_attribs($testfile) || not $!) {
     print "not ok $testNum\n";
     ++$failed;
 } else {
@@ -62,7 +62,7 @@ if (getAttribs($testfile) || not $!) {
 }
 ++$testNum;
 
-if (setAttribs('',$testfile) || not $!) {
+if (set_attribs('',$testfile) || not $!) {
     print "not ok $testNum\n";
     ++$failed;
 } else {
@@ -71,7 +71,7 @@ if (setAttribs('',$testfile) || not $!) {
 }
 
 if ($failed) { print "Failed $failed tests.\a\n" }
-else         { print "Passed.\n"                 }
+else         { print "Passed all tests.\n"       }
 
 exit $failed;
 
@@ -81,7 +81,7 @@ sub runTests
 
     foreach (@tests) {
         my $get;
-        $get = getAttribs($testfile) if setAttribs($$_[0], $testfile);
+        $get = get_attribs($testfile) if set_attribs($$_[0], $testfile);
 
         if ($get eq "$$_[1]$type") {
             print "ok $testNum\n";

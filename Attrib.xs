@@ -1,5 +1,5 @@
 /*********************************************************************
- * $Id: Attrib.xs,v 0.3 1996/10/17 15:45:26 Madsen Exp $
+ * $Id: Attrib.xs,v 0.4 1996/10/17 16:57:00 Madsen Exp $
  *
  * Copyright 1996 Christopher J. Madsen
  *
@@ -75,7 +75,7 @@ constant(const char *name)
  *********************************************************************/
 
 static void
-getAttribs(char* attribs, const char* path)
+get_attribs(char* attribs, const char* path)
 {
   FILESTATUS3  buf;             /* File info buffer */
   APIRET       rc;              /* Return code */
@@ -97,7 +97,7 @@ getAttribs(char* attribs, const char* path)
   attribs[3] = ((buf.attrFile & FILE_ARCHIVED)  ? 'A' : '_');
   attribs[4] = ((buf.attrFile & FILE_DIRECTORY) ? 'D' : '_');
   attribs[5] = '\0';
-} /* end getAttribs */
+} /* end get_attribs */
 
 /*********************************************************************
  * Set the attributes of a file or directory:
@@ -120,7 +120,7 @@ getAttribs(char* attribs, const char* path)
  *********************************************************************/
 
 static bool
-_setAttribs(const char* path, ULONG clear, ULONG set)
+_set_attribs(const char* path, ULONG clear, ULONG set)
 {
   FILESTATUS3  buf;             /* File info buffer */
   APIRET       rc;              /* Return code */
@@ -145,7 +145,7 @@ _setAttribs(const char* path, ULONG clear, ULONG set)
   } /* end if error */
 
   return 1;                     /* Success */
-} /* end _setAttribs */
+} /* end _set_attribs */
 
 MODULE = OS2::Attrib		PACKAGE = OS2::Attrib
 
@@ -156,17 +156,17 @@ constant(name)
 	char *	name
 
 char *
-getAttribs(path)
+get_attribs(path)
 	char *	path
   CODE:
     char attribs[6];
-    getAttribs(attribs, path);
+    get_attribs(attribs, path);
     RETVAL = attribs;
   OUTPUT:
     RETVAL
 
 bool
-_setAttribs(path, clear, set)
+_set_attribs(path, clear, set)
 	char *		path
 	unsigned long	clear
 	unsigned long	set

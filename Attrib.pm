@@ -3,7 +3,7 @@ package OS2::Attrib;
 #
 # Copyright 1996 Christopher J. Madsen
 #
-# $Id: Attrib.pm,v 0.2 1996/10/17 16:56:21 Madsen Exp $
+# $Id: Attrib.pm,v 1.0 1997/02/26 02:52:14 Madsen Rel $
 # Author: Christopher J. Madsen <ac608@yfn.ysu.edu>
 # Created: 13 Mar 1996
 #
@@ -18,7 +18,7 @@ package OS2::Attrib;
 # Get or set OS/2 file attributes
 #---------------------------------------------------------------------
 
-$VERSION = '0.002';
+$VERSION = '1.00';
 
 BEGIN { require 5.002 }
 
@@ -130,6 +130,17 @@ Returns the number of files successfully changed.
 
 =back
 
+=head1 LICENSE
+
+This program is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See either
+the GNU General Public License or the Artistic License for more
+details.
+
 =head1 AUTHOR
 
 Christopher J. Madsen E<lt>F<ac608@yfn.ysu.edu>E<gt>
@@ -139,3 +150,7 @@ Christopher J. Madsen E<lt>F<ac608@yfn.ysu.edu>E<gt>
 The L<OS2::ExtAttr> module provides access to extended attributes.
 
 =cut
+
+# Local Variables:
+# tmtrack-file-task: "OS2::Attrib.pm"
+# End:

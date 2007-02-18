@@ -1,10 +1,10 @@
 #---------------------------------------------------------------------
 package MSDOS::Attrib;
 #
-# Copyright 1996 Christopher J. Madsen
+# Copyright 1996,2007 Christopher J. Madsen
 #
-# $Id: Attrib.pm,v 2.1 1998/10/25 22:56:28 Madsen Exp $
-# Author: Christopher J. Madsen <chris_madsen@geocities.com>
+# $Id$
+# Author: Christopher J. Madsen <cjm@pobox.com>
 # Created: 13 Mar 1996
 #
 # This program is free software; you can redistribute it and/or modify
@@ -18,40 +18,52 @@ package MSDOS::Attrib;
 # Get or set MS-DOS file attributes under OS/2 or Win32
 #---------------------------------------------------------------------
 
-$VERSION = '1.01';
+$VERSION = '1.02';
 
 BEGIN { require 5.002 }
 
 use strict;
 use Carp;
-use vars qw($VERSION @ISA @EXPORT @EXPORT_OK $AUTOLOAD);
+use vars qw($VERSION @ISA @EXPORT @EXPORT_OK @constants);
 
-require Exporter;
-require DynaLoader;
+BEGIN
+{
+  require Exporter;
 
-@ISA = qw(Exporter DynaLoader);
-@EXPORT = ();
-@EXPORT_OK = qw(
-    get_attribs set_attribs
-    FILE_READONLY FILE_HIDDEN FILE_SYSTEM FILE_ARCHIVED FILE_DIRECTORY
-    FILE_CHANGEABLE
-);
+  @constants = qw(
+      FILE_READONLY FILE_HIDDEN FILE_SYSTEM FILE_ARCHIVED FILE_DIRECTORY
+      FILE_CHANGEABLE
+  );
 
-# This AUTOLOAD is used to 'autoload' constants from the constant()
-# XS function:
-sub AUTOLOAD {
-    my $constname;
-    ($constname = $AUTOLOAD) =~ s/.*:://;
-    if ($constname =~ /^FILE_/) {
-        my $val = constant($constname);
-        croak("MSDOS::Attrib does not define $constname") if $! != 0;
-        eval "sub $AUTOLOAD { $val }";
-        goto &$AUTOLOAD;
-    }
-} # end AUTOLOAD
+  @ISA = qw(Exporter);
+  @EXPORT = ();
+  @EXPORT_OK = (qw(get_attribs set_attribs), @constants);
 
-bootstrap MSDOS::Attrib $VERSION;
+  #-------------------------------------------------------------------
+  # Use XSLoader if available, otherwise DynaLoader:
 
+  eval {
+    require XSLoader;
+    XSLoader::load('MSDOS::Attrib', $VERSION);
+    1;
+  } or do {
+    require DynaLoader;
+    push @ISA, 'DynaLoader';
+    bootstrap MSDOS::Attrib $VERSION;
+  };
+
+  #-------------------------------------------------------------------
+  # Generate constant functions:
+
+  foreach my $constname (@constants) {
+    my $val = constant($constname);
+    die "Our DLL does not define $constname" if $! != 0;
+    eval "sub $constname () { $val } 1" or die;
+  } # end foreach @constants
+
+} # end BEGIN bootstrap
+
+#---------------------------------------------------------------------
 sub set_attribs ($@)
 {
     my $attribs = shift;
@@ -60,18 +72,18 @@ sub set_attribs ($@)
 
     for ($attribs) {
         if (/[-+]/) {
-            $clear |= &FILE_READONLY if /-[a-z_]*R/i;
-            $clear |= &FILE_HIDDEN   if /-[a-z_]*H/i;
-            $clear |= &FILE_SYSTEM   if /-[a-z_]*S/i;
-            $clear |= &FILE_ARCHIVED if /-[a-z_]*A/i;
+            $clear |= FILE_READONLY if /-[a-z_]*R/i;
+            $clear |= FILE_HIDDEN   if /-[a-z_]*H/i;
+            $clear |= FILE_SYSTEM   if /-[a-z_]*S/i;
+            $clear |= FILE_ARCHIVED if /-[a-z_]*A/i;
         } else {
-            $clear = &FILE_CHANGEABLE; # Clear all attributes
+            $clear = FILE_CHANGEABLE; # Clear all attributes
             $_ = "+$_";                # except those specified
         }
-        $set |= &FILE_READONLY if /\+[a-z_]*R/i;
-        $set |= &FILE_HIDDEN   if /\+[a-z_]*H/i;
-        $set |= &FILE_SYSTEM   if /\+[a-z_]*S/i;
-        $set |= &FILE_ARCHIVED if /\+[a-z_]*A/i;
+        $set |= FILE_READONLY if /\+[a-z_]*R/i;
+        $set |= FILE_HIDDEN   if /\+[a-z_]*H/i;
+        $set |= FILE_SYSTEM   if /\+[a-z_]*S/i;
+        $set |= FILE_ARCHIVED if /\+[a-z_]*A/i;
     } # end for $attribs
 
     carp("No change specified") if $clear == 0 and $set == 0;
@@ -143,7 +155,7 @@ details.
 
 =head1 AUTHOR
 
-Christopher J. Madsen E<lt>F<chris_madsen@geocities.com>E<gt>
+Christopher J. Madsen E<lt>F<cjm@pobox.com>E<gt>
 
 =head1 SEE ALSO
 

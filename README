@@ -1,5 +1,5 @@
-MSDOS::Attrib	Version 1.01
-Copyright 1996,1997 Christopher J. Madsen
+MSDOS::Attrib	Version 1.02
+Copyright 1996,1997,2007 Christopher J. Madsen
 
 DESCRIPTION
 	MSDOS::Attrib allows you to get or set file attributes under
@@ -15,10 +15,18 @@ DESCRIPTION
 	any programs that use it.
 
 INSTALLATION
-	Unpack the archive, run Makefile.PL, type 'make', 'make test',
-	and then 'make install'.  You must be able to compile extensions.
+        To install this module, run the following commands:
 
-	I have tested MSDOS::Attrib with Perl 5.004_01, under OS/2
+        perl Build.PL
+        perl Build
+        perl Build test
+        perl Build install
+
+	You must be able to compile extensions.
+
+	I have tested MSDOS::Attrib with Perl 5.8.8 under Windows 2000
+	with Visual C++ 6 and the README.win32 instructions.  Previous
+	versions have been tested with Perl 5.004_01, under OS/2
 	with EMX 0.9c and gcc 2.7.2.1, and under Windows NT with
 	Visual C++ 5.0 and the README.win32 instructions.  If you find
 	that a different compiler does/doesn't work, please let me know.
@@ -34,4 +42,4 @@ LICENSE
 	details.
 
 AUTHOR
-	Christopher J. Madsen <chris_madsen@geocities.com>
+	Christopher J. Madsen <cjm@pobox.com>

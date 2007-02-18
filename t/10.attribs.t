@@ -1,7 +1,7 @@
-# $Id: test.pl,v 2.0 1997/09/05 22:33:37 Madsen Rel $
-#
-# Before `make install' is performed this script should be runnable with
-# `make test'. After `make install' it should work as `perl test.pl'
+#! /usr/bin/perl
+#---------------------------------------------------------------------
+# $Id$
+#---------------------------------------------------------------------
 
 BEGIN {
     @tests = (

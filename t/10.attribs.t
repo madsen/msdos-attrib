@@ -70,8 +70,8 @@ if (set_attribs('',$testfile) || not $!) {
     print "ok $testNum\n";
 }
 
-if ($failed) { print "Failed $failed tests.\a\n" }
-else         { print "Passed all tests.\n"       }
+if ($failed) { print "# Failed $failed tests.\a\n" }
+else         { print "# Passed all tests.\n"       }
 
 exit $failed;
 

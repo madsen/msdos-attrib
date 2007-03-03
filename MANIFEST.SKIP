@@ -19,5 +19,7 @@ _build
 ^announce.txt$
 ^cjm_
 ^_build\b
-^Build$
+^Build(?:\.bat)?$
 ^MSDOS-Attrib-\d
+^inSVN
+^wasRCS

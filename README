@@ -1,4 +1,4 @@
-MSDOS::Attrib	Version 1.02
+MSDOS::Attrib	Version 1.03
 Copyright 1996,1997,2007 Christopher J. Madsen
 
 DESCRIPTION
@@ -42,4 +42,4 @@ LICENSE
 	details.
 
 AUTHOR
-	Christopher J. Madsen <cjm@pobox.com>
+	Christopher J. Madsen <perl@cjmweb.net>

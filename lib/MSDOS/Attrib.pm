@@ -4,7 +4,7 @@ package MSDOS::Attrib;
 # Copyright 1996,2007 Christopher J. Madsen
 #
 # $Id$
-# Author: Christopher J. Madsen <cjm@pobox.com>
+# Author: Christopher J. Madsen <perl@cjmweb.net>
 # Created: 13 Mar 1996
 #
 # This program is free software; you can redistribute it and/or modify
@@ -18,8 +18,6 @@ package MSDOS::Attrib;
 # Get or set MS-DOS file attributes under OS/2 or Win32
 #---------------------------------------------------------------------
 
-$VERSION = '1.02';
-
 BEGIN { require 5.002 }
 
 use strict;
@@ -28,6 +26,8 @@ use vars qw($VERSION @ISA @EXPORT @EXPORT_OK @constants);
 
 BEGIN
 {
+  $VERSION = '1.03';
+
   require Exporter;
 
   @constants = qw(
@@ -155,7 +155,7 @@ details.
 
 =head1 AUTHOR
 
-Christopher J. Madsen E<lt>F<cjm@pobox.com>E<gt>
+Christopher J. Madsen E<lt>F<perl@cjmweb.net>E<gt>
 
 =head1 SEE ALSO
 

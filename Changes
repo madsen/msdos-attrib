@@ -1,5 +1,10 @@
 Revision history for Perl extension MSDOS::Attrib.
 
+1.03   Mar 03 2007
+        - build fixes for Cygwin
+        - fixed pod-coverage.t
+        - updated my email address
+
 1.02   Feb 18 2007
         - use XSLoader if available
         - create all constants at startup

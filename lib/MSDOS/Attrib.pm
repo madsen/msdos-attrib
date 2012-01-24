@@ -3,7 +3,6 @@ package MSDOS::Attrib;
 #
 # Copyright 1996,2008 Christopher J. Madsen
 #
-# $Id$
 # Author: Christopher J. Madsen <perl@cjmweb.net>
 # Created: 13 Mar 1996
 #
@@ -15,11 +14,11 @@ package MSDOS::Attrib;
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See either the
 # GNU General Public License or the Artistic License for more details.
 #
-# Get or set MS-DOS file attributes under OS/2 or Win32
+# ABSTRACT: Get or set MS-DOS file attributes
+#           under OS/2 or Win32
 #---------------------------------------------------------------------
 
-BEGIN { require 5.002 }
-
+use 5.005;
 use strict;
 use Carp;
 #use warnings;         # Wasn't core until 5.6.0
@@ -27,7 +26,7 @@ use vars qw($VERSION @ISA @EXPORT @EXPORT_OK @constants);
 
 BEGIN
 {
-  $VERSION = '1.04';
+  $VERSION = '1.05';
 
   require Exporter;
 
@@ -97,15 +96,6 @@ sub set_attribs ($@)
 1;
 __END__
 
-=head1 NAME
-
-MSDOS::Attrib - Get or set MS-DOS file attributes
-
-=head1 VERSION
-
-This document describes $Id$
-
-
 =head1 SYNOPSIS
 
   use MSDOS::Attrib qw(get_attribs set_attribs);
@@ -156,46 +146,8 @@ The L<OS2::ExtAttr> module provides access to extended attributes under OS/2.
 The L<Win32::FileSecurity> module provides access to Discretionary
 Access Control Lists under Windows NT.
 
-
-=head1 AUTHOR
-
-Christopher J. Madsen  S<< C<< <perl AT cjmweb.net> >> >>
-
-Please report any bugs or feature requests to
-S<< C<< <bug-MSDOS-Attrib AT rt.cpan.org> >> >>,
-or through the web interface at
-L<http://rt.cpan.org/Public/Bug/Report.html?Queue=MSDOS-Attrib>
-
-
-=head1 LICENSE AND COPYRIGHT
-
-Copyright 1996-2008 Christopher J. Madsen
-
-This module is free software; you can redistribute it and/or
-modify it under the same terms as Perl itself. See L<perlartistic>.
-
-
-=head1 DISCLAIMER OF WARRANTY
-
-BECAUSE THIS SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
-FOR THE SOFTWARE, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN
-OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
-PROVIDE THE SOFTWARE "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER
-EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE
-ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE SOFTWARE IS WITH
-YOU. SHOULD THE SOFTWARE PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL
-NECESSARY SERVICING, REPAIR, OR CORRECTION.
-
-IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
-WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
-REDISTRIBUTE THE SOFTWARE AS PERMITTED BY THE ABOVE LICENCE, BE
-LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL,
-OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE
-THE SOFTWARE (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING
-RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A
-FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF
-SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
-SUCH DAMAGES.
+=for Pod::Coverage
+FILE_
+constant
 
 =cut

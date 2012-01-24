@@ -1,5 +1,10 @@
 Revision history for Perl extension MSDOS::Attrib.
 
+1.05   NOT
+	- no functional changes
+	- now built with Dist::Zilla (includes v2 META.json)
+	- repository now publicly available on GitHub
+
 1.04   May 3, 2008
 	- no functional changes
 	- check for supported OS in Build.PL

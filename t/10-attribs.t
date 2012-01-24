@@ -1,6 +1,6 @@
 #! /usr/bin/perl
 #---------------------------------------------------------------------
-# $Id$
+# 10-attribs.t
 #---------------------------------------------------------------------
 
 BEGIN {
@@ -94,6 +94,5 @@ sub runTests
 } # end runTests
 
 # Local Variables:
-# compile-command: "nmake test"
 # tmtrack-file-task: "MSDOS::Attrib test.pl"
 # End:

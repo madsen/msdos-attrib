@@ -1,0 +1,44 @@
+MSDOS-Attrib version {{$version}}, released {{$date}}
+
+
+MSDOS::Attrib allows you to get or set file attributes under
+OS/2 or Windows 95/NT.  These are the standard file attributes
+(read-only, hidden, system, archive, and directory).  If you
+want to access OS/2 extended attributes, use the OS2::ExtAttr
+module.  If you want to access Windows NT security attributes,
+try the Win32::FileSecurity module.
+
+MSDOS::Attrib was previously known as OS2::Attrib.  I renamed
+it because it now works on Win32 systems as well as OS/2.  To
+upgrade, simply replace "OS2::Attrib" with "MSDOS::Attrib" in
+any programs that use it.
+
+
+
+INSTALLATION
+
+To install this module, run the following commands:
+
+{{ $t->build_instructions }}
+
+You must be able to compile extensions.
+
+
+
+DEPENDENCIES
+
+{{ $t->dependency_list }}
+
+
+
+CHANGES
+    Here's what's new in version {{$version}} of MSDOS::Attrib:
+    (See the file "Changes" for the full revision history.)
+
+{{$changes}}
+
+
+
+COPYRIGHT AND LICENSE
+
+{{ local $_ = $zilla->license->notice; chomp; $_ }}

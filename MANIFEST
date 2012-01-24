@@ -1,13 +1,14 @@
-Build.PL			For Module::Build
-Changes				Revision history
-lib/MSDOS/Attrib.pm		Perl interface for MSDOS::Attrib
-lib/MSDOS/Attrib.xs		The XSUBs that actually do the work
-Makefile.PL			From Module::Build::Compat
-MANIFEST			See MANIFEST
+Build.PL
+Changes
+LICENSE
+MANIFEST
+META.json
 META.yml
-README				About the MSDOS::Attrib module
-t/00.load.t
-t/10.attribs.t			Testing... 1, 2, 3, Testing... 1, 2, 3
-t/pod-coverage.t
-t/pod.t
-tools/README.tt
+README
+lib/MSDOS/Attrib.pm
+lib/MSDOS/Attrib.xs
+t/00-all_prereqs.t
+t/00-load.t
+t/10-attribs.t
+t/release-pod-coverage.t
+t/release-pod-syntax.t

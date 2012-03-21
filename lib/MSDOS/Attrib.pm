@@ -146,6 +146,10 @@ The L<OS2::ExtAttr> module provides access to extended attributes under OS/2.
 The L<Win32::FileSecurity> module provides access to Discretionary
 Access Control Lists under Windows NT.
 
+The L<Win32::File> module provides similar functionality to
+MSDOS::Attrib, but with a different (and in my opinion clunkier)
+interface.
+
 =for Pod::Coverage
 FILE_
 constant

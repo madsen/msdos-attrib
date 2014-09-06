@@ -220,8 +220,9 @@ constant(name)
 char *
 get_attribs(path)
 	char *	path
-  CODE:
+  PREINIT:
     char attribs[6];
+  CODE:
     get_attribs(attribs, path);
     RETVAL = attribs;
   OUTPUT:

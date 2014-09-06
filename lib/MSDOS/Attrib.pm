@@ -26,7 +26,7 @@ use vars qw($VERSION @ISA @EXPORT @EXPORT_OK @constants);
 
 BEGIN
 {
-  $VERSION = '1.05';
+  $VERSION = '1.06';
 
   require Exporter;
 
@@ -151,7 +151,7 @@ MSDOS::Attrib, but with a different (and in my opinion clunkier)
 interface.
 
 =for Pod::Coverage
-FILE_
+FILE_.*
 constant
 
 =cut

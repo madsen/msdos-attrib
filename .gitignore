@@ -11,5 +11,6 @@ MSDOS-Attrib-*.tar.gz
 MSDOS-Attrib-*/
 /test-results/
 *.c
+*.o
 *.obj
 *.pdb
